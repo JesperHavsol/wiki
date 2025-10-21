@@ -1,12 +1,12 @@
 import click
-import wikipedia
+from mylib.bot import scrape
 
 @click.command()
 @click.option('--topic',prompt="The wikipage we want to scrape",
             help="The page we want to scrape")
-def scrape(topic="Linux", sentences=1):
-    res = wikipedia.summary(topic, sentences)
-    click.echo(res)
+def scrape_cli(topic="Linux"):
+    res = scrape(topic, sentences=1)
+    click.echo(click.style(f"{res}",bg='blue',fg="red"))
 
 if __name__ == '__main__':
-    scrape()
+    scrape_cli()
